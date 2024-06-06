@@ -1,8 +1,6 @@
 # LinkedCHAIN
-
 LinkedCHAIN is a blockchain-based professional history management tool that revolutionizes the job application and verification process. It leverages blockchain technology to create a secure, transparent, and efficient system that empowers both the job seeker and employers. 
 
-<br>
 
 ### Overview 
 The project is structured as follows:
@@ -20,8 +18,7 @@ The project is structured as follows:
     - `functions.py`: Miscellaneous utility functions. 
     - `load_contract_functions`: Functions for loading contract functions.
     - `menu.py`: Menu-related functions.
-
-<br>
+      
 
 ### Features 
 #### Initial Coin Offering(token crowdsale):
@@ -38,9 +35,8 @@ The project is structured as follows:
 - **Admin Actions**: Admins can accept or decline validation requests. Accepted requests are added to the blockchain.
 
 #### Querying Records:
-- Record Query**: User records can be queried based on their wallet.
+- **Record Query**: User records can be queried based on their wallet.
 
-<br>
 
 ### Getting Started 
 To run the LinkedCHAIN application, follow these steps:
@@ -50,12 +46,10 @@ To run the LinkedCHAIN application, follow these steps:
 4. Run the `app.py` script: `streamlit run app.py`.
 5. Access the application in your web browser at the provided URL.
 
-<br>
 
 ### Crowdsale Information 
 The crowdsale functionality allows companies to purchase Hyrd(HYD) tokens, which are used within the LinkedCHAIN ecosystem to validate and endorse job histories. The exchange rate for the crowdsale is 1 unit to 0.5 Ether. Participants can purchase tokens at this rate and use them to validate employment records.
 
-<br>
 
 ### Contributing 
 We welcome contributions from the community to improve LinkedCHAIN. To contribute, follow these steps:
