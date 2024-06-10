@@ -4,7 +4,7 @@
 
 # Imports dependencies
 import streamlit as st
-from utility.menu import unauthenticated_menu
+from menu import unauthenticated_menu
 
 # Shows the navigation menu for unauthenticated users
 unauthenticated_menu()

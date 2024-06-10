@@ -4,7 +4,9 @@
 
 # Imports dependencies.
 import streamlit as st
-from utility.menu import unauthenticated_menu
+from menu import unauthenticated_menu
+from app import options_mapping, display_names
+from functions import purchase_tokens
 
 # Shows the navigation menu for unauthenticated users.
 unauthenticated_menu()
@@ -46,3 +48,12 @@ for benefit in benefits:
 st.write("Join the LinkedChain ecosystem today and help us revolutionize the job application and verification process!")
 
 st.divider()
+purchaser_name = st.selectbox("Select Purchaser Address:", options=display_names)
+purchaser_address = options_mapping[purchaser_name]
+purchase_amount = st.number_input("Enter the amount of tokens to purchase (1token = 0.5ETH):", min_value=100)
+beneficiary_name = st.text_input("Beneficiary:", "LinkedCHAIN")
+beneficiary_address = options_mapping[beneficiary_name]
+
+if st.button("Purchase Tokens"):
+    purchase_tokens(purchaser_address, beneficiary_address, purchase_amount)
+    

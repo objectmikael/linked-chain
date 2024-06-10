@@ -10,11 +10,11 @@ def authenticated_menu():
     st.sidebar.page_link("app.py", label="Switch accounts")
     if st.session_state.role == "user":
         st.sidebar.page_link("pages/user.py", label="Make Requests")
-    elif st.session_state.role == "admin":
-        st.sidebar.page_link("pages/admin.py", label="Validate Requests")
+    elif st.session_state.role == "company-admin":
+        st.sidebar.page_link("pages/company-admin.py", label="Validate Requests")
         st.sidebar.page_link("pages/query.py", label="Find Your Fit")
-    elif st.session_state.role == "super-admin":
-        st.sidebar.page_link("pages/super-admin.py", label="Transfer Tokens")
+    elif st.session_state.role == "linkedchain-admin":
+        st.sidebar.page_link("pages/linkedchain-admin.py", label="Transfer Tokens")
 
 # Defines a function for a navigation menu for unauthenticated users.
 def unauthenticated_menu():
