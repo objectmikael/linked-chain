@@ -5,6 +5,8 @@ LinkedCHAIN is a blockchain-based professional history management tool that revo
 ### Overview 
 The project is structured as follows:
 - **app.py**: Main Python script for running the application.
+- **menu.py**: Menu-related functions.
+- **functions.py**: Miscellaneous utility functions. 
 - **contracts**: Directory containing compiled contract ABIs.
 - **pages**: Directory containing various pages of the application, including:
     - About Us
@@ -12,13 +14,8 @@ The project is structured as follows:
     - Crowdsale
     - Query
     - Super Admin
-    - User
-- **utility**: Directory containing utility functions for interacting with the blockchain, including:
-    - `accounts.py`: Functions related to Ethereum accounts.
-    - `functions.py`: Miscellaneous utility functions. 
-    - `load_contract_functions`: Functions for loading contract functions.
-    - `menu.py`: Menu-related functions.
-      
+    - User  
+
 
 ### Features 
 #### Initial Coin Offering(token crowdsale):

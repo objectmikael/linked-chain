@@ -9,14 +9,19 @@ import json
 from pathlib import Path
 from web3 import Web3
 import streamlit as st
-from dotenv import load_dotenv
 from menu import menu
 
-# Loads env variables.
-load_dotenv()
+#####################################
+# Variables.
+#####################################
+WEB3_PROVIDER_URI='http://127.0.0.1:7545'
+TOKEN_SMART_CONTRACT_ADDRESS='0x7A64Ea5c7E0141E4DA509419ea75FD011bE0baea'
+CROWDSALE_SMART_CONTRACT_ADDRESS='0x36E3942C8F4c17D79f91A7b582D1A82C2153142f'
+REQUESTS_SMART_CONTRACT_ADDRESS='0xCE9fE26be5F75C2acf88243002e9DE8FB8091B1A'
+DEPLOYER_SMART_CONTRACT_ADDRESS='0xc8Cde4E9a8a289afF86Aa92239de7D38743ca196'
 
 # Connects to Ganache.
-w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
+w3 = Web3(Web3.HTTPProvider("WEB3_PROVIDER_URI"))
 
 # Checks connection to Ganache.
 if w3.isConnected():
@@ -24,39 +29,32 @@ if w3.isConnected():
 else:
     st.error("Failed to connect to Ethereum")
 
-# Initializes st.session_state.role to None.
-if "role" not in st.session_state:
-    st.session_state.role = None
-
 #####################################
 # Functions for loading
 # contract functions.
 #####################################
 # Caches the contract on load.
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 
 # Defines function to load the HYDToken contract.
 def load_token_contract():
     with open(Path('./contracts/compiled/token_abi.json')) as f:
         contract_abi = json.load(f)
-    contract_address = os.getenv("TOKEN_SMART_CONTRACT_ADDRESS")
-    token_contract = w3.eth.contract(address=contract_address,abi=contract_abi)
+    token_contract = w3.eth.contract(address=TOKEN_SMART_CONTRACT_ADDRESS, abi=contract_abi)
     return token_contract
 
 # Defines function to load the HYDCrowdsale contract.
 def load_crowdsale_contract():
     with open(Path('./contracts/compiled/crowdsale_abi.json')) as f:
         contract_abi = json.load(f)
-    contract_address = os.getenv("CROWDSALE_SMART_CONTRACT_ADDRESS")
-    crowdsale_contract = w3.eth.contract(address=contract_address,abi=contract_abi)
+    crowdsale_contract = w3.eth.contract(address=CROWDSALE_SMART_CONTRACT_ADDRESS, abi=contract_abi)
     return crowdsale_contract
 
 # Defines function to load the HYDValidation contract.
 def load_requests_contract():
     with open(Path('./contracts/compiled/requests_abi.json')) as f:
         contract_abi = json.load(f)
-    contract_address = os.getenv("REQUESTS_SMART_CONTRACT_ADDRESS")
-    requests_contract = w3.eth.contract(address=contract_address,abi=contract_abi)
+    requests_contract = w3.eth.contract(address=REQUESTS_SMART_CONTRACT_ADDRESS, abi=contract_abi)
     return requests_contract
 
 # Loads contracts to a variable.
@@ -79,6 +77,10 @@ display_names = list(options_mapping.keys())
 #####################################
 # Set Roles and Menu
 #####################################
+# Initializes st.session_state.role to None.
+if "role" not in st.session_state:
+    st.session_state.role = None
+
 # Retrieves the role from session state to initialize the widget
 st.session_state._role = st.session_state.role
 def set_role():
@@ -115,7 +117,7 @@ st.header("",divider='rainbow')
 
 total_supply_in_wei = tokenContract.functions.totalSupply().call()
 total_supply = int(total_supply_in_wei/ 10**18)
-available_tokens_in_wei = tokenContract.functions.balanceOf('0x1aa05c0C53BEc480d0d834d2C8c93AF42949e889').call()
+available_tokens_in_wei = tokenContract.functions.balanceOf(DEPLOYER_SMART_CONTRACT_ADDRESS).call()
 available_tokens = int(available_tokens_in_wei/ 10**18)
 weiRaised = crowdsaleContract.functions.weiRaised().call()
 value_in_ether = int(Web3.fromWei(weiRaised, 'ether'))
@@ -140,3 +142,8 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.header("",divider='rainbow')
+
+# CROWDSALE CTA
+st.header(":rainbow[Invest With Us Today!]")
+if st.button(":green[Click to fund]"):
+    st.switch_page("pages/crowdsale.py")

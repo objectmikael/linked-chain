@@ -10,7 +10,7 @@ from menu import menu_with_redirect
 menu_with_redirect()
 
 # Verifies the user's role
-if st.session_state.role not in ["admin", "super-admin"]:
+if st.session_state.role not in ["company-admin", "linkedchain-admin"]:
     st.warning("You do not have permission to view this page.")
     st.stop()
 
