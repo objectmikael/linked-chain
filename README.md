@@ -6,21 +6,22 @@ LinkedCHAIN is a blockchain-based professional history management tool that revo
 The project is structured as follows:
 - **app.py**: Main Python script for running the application.
 - **menu.py**: Menu-related functions.
-- **functions.py**: Miscellaneous utility functions. 
+- **functions.py**: Utility functions. 
 - **contracts**: Directory containing compiled contract ABIs.
 - **pages**: Directory containing various pages of the application, including:
     - About Us
-    - Admin
+    - Company Admin
     - Crowdsale
+    - LinkedCHAIN Admin
+    - Product Roadmap
     - Query
-    - Super Admin
     - User  
 
 
 ### Features 
 #### Initial Coin Offering(token crowdsale):
 - **Hyrd(HYD) Token**: Implement using the ERC20 protocol.
-- **Crowdsale Participants**: Companies can participate in the crowdsale to recieve HYD tokens and join the ecosystem.
+- **Crowdsale Participants**: Companies participate in a crowdsale to fund the platform, join the ecosystem and mint HYD tokens. 
 - **Exchange Rate**: 1 HYD per 0.5 ETH, with a minimum purchase of 100 tokens.
 - **Token Storage**: Upon making a transaction via crowdsale, tokens will be stored in a LinkedCHAIN wallet.
 - **Admin Role**: Entities that complete a transaction via crowdsale are marked as admins.
@@ -29,8 +30,7 @@ The project is structured as follows:
 - **Token Distribution**: The distribution wallet can disperse one HYD token to another wallet/user.
 - **Validation Requests**: Users with a HYD token can request validation of employment from an admin wallet.
 - **Employment Records**: Must include: Company Name, Start Date, End Date, and Responsibilities.
-- **Admin Actions**: Admins can accept or decline validation requests. Accepted requests are added to the blockchain.
-
+- **Admin Actions**: Admins can accept or decline validation requests. Accepted requests are added to a user’s record on the blockchain. 
 #### Querying Records:
 - **Record Query**: User records can be queried based on their wallet.
 

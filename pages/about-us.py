@@ -9,21 +9,21 @@ from menu import unauthenticated_menu
 # Shows the navigation menu for unauthenticated users
 unauthenticated_menu()
 
-st.title(":green[LinkedCHAIN]")
+st.title("LinkedCHAIN")
 st.header("",divider='rainbow')
 
 # Mission Section
-st.header("Mission")
+st.subheader("Mission")
 st.write("To revolutionize the job application and verification process by leveraging blockchain technology, "
          "creating a secure, transparent, and efficient system that empowers both job seekers and employers.")
 
 # Vision Section
-st.header("Vision")
+st.subheader("Vision")
 st.write("To become the global standard for professional history management, where trust, efficiency, and authenticity "
          "in job verification are guaranteed, ensuring a seamless hiring experience for all stakeholders.")
 
 # Principles Section
-st.header("Principles")
+st.subheader("Principles")
 principles = [
     "Transparency: Ensuring complete transparency in the job application process, making all professional histories easily verifiable and accurate.",
     "Security: Prioritizing security by using blockchain technology to protect all data against unauthorized access.",
@@ -35,7 +35,7 @@ for principle in principles:
     st.write(principle.split(': ')[1])
 
 # Values Section
-st.header("Values")
+st.subheader("Values")
 values = [
     "Trust: Building a trustworthy environment where all participants can rely on the authenticity of job histories.",
     "Innovation: Committing to continuous innovation by using the latest blockchain and UI technologies to enhance our platform.",

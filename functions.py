@@ -33,7 +33,7 @@ def approve_request(company_address, request_id):
 
         st.success(f"Validation accepted successfully!")
         # st.write(tx_receipt)
-        time.sleep(2)
+        time.sleep(3)
         # Remove the approved request from the pending_validations list
         index_to_remove = None
         for i, request in enumerate(st.session_state.pending_validations): 
@@ -47,17 +47,6 @@ def approve_request(company_address, request_id):
         st.switch_page("app.py")
     except Exception as e:
         st.error(f"Error occurred: {str(e)}")
-
-
-
-# Function to fetch the current price of ETH in USD using CoinGecko API
-def get_eth_price_in_usd():
-    url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
-    response = requests.get(url)
-    data = response.json()
-    eth_price_usd = data["ethereum"]["usd"]
-    return eth_price_usd
-
 
 
 def make_a_request(user_address, company_name, start_date, end_date, title, responsibility, company_address):
@@ -107,7 +96,7 @@ def make_a_request(user_address, company_name, start_date, end_date, title, resp
             "approver_address": record.approver
         })
         st.success(f"Validation request submitted successfully!")
-        time.sleep(2)
+        time.sleep(3)
         st.switch_page("app.py")
     except Exception as e:
         st.error(f"Error occurred: {str(e)}")
@@ -148,7 +137,7 @@ def purchase_tokens(purchaser_address, beneficiary_address, amount):
 
         st.success(f"Tokens purchased successfully!")
         st.balloons()
-        time.sleep(2)
+        time.sleep(3)
         st.switch_page("app.py")
     except Exception as e:
         st.error(f"Error occured: {str(e)}")
@@ -165,6 +154,16 @@ def transfer_tokens(sender_address, receiver_address, amount):
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
         st.success(f"Tokens transferred successfully!")
+        time.sleep(3)
+        st.switch_page("app.py")
     except Exception as e:
         st.error(f"Error occurred: {str(e)}")
         
+
+def query_approved_requests(account):
+    try:
+        requests = requestsContract.functions.getRequestsByAccount(account).call()
+        return requests
+    except Exception as e:
+        st.error(f"Error querying approved requests: {e}")
+        return []

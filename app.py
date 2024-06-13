@@ -15,13 +15,13 @@ from menu import menu
 # Variables.
 #####################################
 WEB3_PROVIDER_URI='http://127.0.0.1:7545'
-TOKEN_SMART_CONTRACT_ADDRESS='0x7A64Ea5c7E0141E4DA509419ea75FD011bE0baea'
-CROWDSALE_SMART_CONTRACT_ADDRESS='0x36E3942C8F4c17D79f91A7b582D1A82C2153142f'
+TOKEN_SMART_CONTRACT_ADDRESS='0x90670b91ceF6Fa24793E71ec438E52e993fda869'
+CROWDSALE_SMART_CONTRACT_ADDRESS='0xC9f677488E3f0dC1229b18CA336F20CbCD46d526'
 REQUESTS_SMART_CONTRACT_ADDRESS='0xCE9fE26be5F75C2acf88243002e9DE8FB8091B1A'
 DEPLOYER_SMART_CONTRACT_ADDRESS='0xc8Cde4E9a8a289afF86Aa92239de7D38743ca196'
 
 # Connects to Ganache.
-w3 = Web3(Web3.HTTPProvider("WEB3_PROVIDER_URI"))
+w3 = Web3(Web3.HTTPProvider(WEB3_PROVIDER_URI))
 
 # Checks connection to Ganache.
 if w3.isConnected():
@@ -104,11 +104,8 @@ menu()
 #####################################
 st.markdown(""" 
     <center>
-        <h1 style='color:orange;'>
-            Welcome to 
-                <span style='color:green; text-decoration: underline; text-decoration-color: black;'>
-                    LinkedCHAIN
-                </span>
+        <h1>
+            Welcome to LinkedCHAIN
         </h1>
         <h5>A Blockchain Professional History Management Tool</h5>
     </center>""", unsafe_allow_html=True)
@@ -128,15 +125,15 @@ st.markdown(f"""
     <center>
         <div style="display: inline-block;">
             <h4>Tokens Minted</h4>
-            <h6 style='color:blue'>{total_supply}</h6>
+            <h6>{total_supply}</h6>
         </div>
         <div style="display: inline-block;">
             <h4>Available Tokens</h4>
-            <h6 style='color:orange'>{available_tokens}</h6>
+            <h6>{available_tokens}</h6>
         </div>
         <div style="display: inline-block;">
             <h4>Total Funds Raised</h4>
-            <h6 style='color:green'>${funds_raised_usd}</h6>
+            <h6>{value_in_ether} ETH (${funds_raised_usd})</h6>
         </div>
     </center>
 """, unsafe_allow_html=True)
@@ -144,6 +141,6 @@ st.markdown(f"""
 st.header("",divider='rainbow')
 
 # CROWDSALE CTA
-st.header(":rainbow[Invest With Us Today!]")
+st.header("Invest With Us Today!")
 if st.button(":green[Click to fund]"):
     st.switch_page("pages/crowdsale.py")

@@ -21,6 +21,7 @@ def unauthenticated_menu():
     st.sidebar.page_link("app.py", label="Home")
     st.sidebar.page_link("pages/about-us.py", label="About Us")
     st.sidebar.page_link("pages/crowdsale.py", label="Crowdsale")
+    st.sidebar.page_link("pages/roadmap.py", label="Product Roadmap")
 
 # Defines a function to determine if a user is logged in or not,
 # then show the correct navigation menu.

@@ -19,7 +19,7 @@ if st.session_state.role not in ["linkedchain-admin"]:
 
 st.toast(f"You are currently logged in as a {st.session_state.role} at LinkedCHAIN.")
 
-st.title(":green[LinkedCHAIN]")
+st.title("LinkedCHAIN")
 st.header("",divider='rainbow')
 
 st.header("Token Transfer")
@@ -30,5 +30,5 @@ amount = st.number_input("Number of tokens to transfer:", 1)
 receiver_name = st.selectbox("Select receiver address:", options=display_names)
 receiver_address = options_mapping[receiver_name]
 
-if st.button("Transfer Tokens"):
+if st.button(":green[Transfer Tokens]"):
     transfer_tokens(sender_address, receiver_address, amount)

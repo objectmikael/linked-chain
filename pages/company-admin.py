@@ -17,7 +17,7 @@ if st.session_state.role not in ["company-admin", "linkedchain-admin"]:
 
 st.toast(f"You are currently logged in as an {st.session_state.role}.")
 
-st.title(":green[LinkedCHAIN]")
+st.title("LinkedCHAIN")
 st.header("",divider='rainbow')
 
 st.header("Pending Validation Requests")
