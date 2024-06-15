@@ -4,8 +4,8 @@
 import streamlit as st
 import time
 from web3 import Web3
-import requests
 from web3.gas_strategies.time_based import medium_gas_price_strategy
+from web3.exceptions import ContractLogicError
 from app import tokenContract, crowdsaleContract, requestsContract, w3
 
 
@@ -98,8 +98,11 @@ def make_a_request(user_address, company_name, start_date, end_date, title, resp
         st.success(f"Validation request submitted successfully!")
         time.sleep(3)
         st.switch_page("app.py")
-    except Exception as e:
-        st.error(f"Error occurred: {str(e)}")
+    except ValueError as e:
+        if "Must have a token to create a request" in str(e):
+            st.error("Error occured: User must have a token to create a request.")
+        else:
+            st.error(f"Error occurred: {str(e)}")
 
 
 
@@ -111,9 +114,6 @@ def purchase_tokens(purchaser_address, beneficiary_address, amount):
     eth_amount = amount / rate # Convert token amount to ETH
     amount_in_wei = w3.toWei(eth_amount, "ether")  # Convert ETH to Wei
     # Get gas estimate
-    # gasEstimate = w3.eth.estimateGas(
-    #     {"to": beneficiary_address, "from": purchaser_address, "value": amount_in_wei+100000}
-    # )
     gasEstimate = 800000
     # Get current gas price
     gasPrice = w3.eth.gasPrice
@@ -156,8 +156,11 @@ def transfer_tokens(sender_address, receiver_address, amount):
         st.success(f"Tokens transferred successfully!")
         time.sleep(3)
         st.switch_page("app.py")
-    except Exception as e:
-        st.error(f"Error occurred: {str(e)}")
+    except ContractLogicError as e:
+        if "Recipient already has a token" in str(e):
+            st.error("Error occured: Limit of 1 token per recipient.")
+        else:
+            st.error(f"Error occurred: {str(e)}")
         
 
 def query_approved_requests(account):

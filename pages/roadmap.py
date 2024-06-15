@@ -13,7 +13,7 @@ st.title("LinkedCHAIN")
 st.header("",divider='rainbow')
 
 # Token Description
-st.subheader("Product Roadmap")
+st.header("Product Roadmap")
 st.write("We are excited to share the future direction of our platform. Our goal is to enhance functionality, security, and user experience while reducing costs. Below are the key improvements we are working on:")
 
 # Roadmap item 1: Reduce Transaction Costs

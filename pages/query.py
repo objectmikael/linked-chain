@@ -5,7 +5,7 @@
 # Imports dependencies.
 import streamlit as st
 from menu import menu_with_redirect
-from app import options_mapping, display_names, requestsContract
+from app import options_mapping, display_names
 from functions import query_approved_requests
 
 # Redirects to app.py if not logged in, otherwise show the navigation menu
@@ -29,17 +29,15 @@ account_address = options_mapping[account_name]
 
 if st.button(':green[Query Approved Requests]'):
     approved_requests = query_approved_requests(account_address)
-    # if not approved_requests:
-    #     st.info('No approved requests found for this account.')
-    # else:
-    #     st.write('Approved Requests:')
-    #     for request in approved_requests:
-    #         st.write(f"ID: {request[0]}")
-    #         st.write(f"Company Name: {request[1]}")
-    #         st.write(f"Start Date: {request[2]}")
-    #         st.write(f"End Date: {request[3]}")
-    #         st.write(f"Title: {request[4]}")
-    #         st.write(f"Responsibility: {request[5]}")
-    #         st.write(f"Approver: {request[6]}")
-    #         st.write('---')
-    st.write(approved_requests)
+    if not approved_requests:
+        st.error('No approved requests found for this account.')
+    else:
+        # st.write('Approved Requests:')
+        for request in approved_requests:
+            st.markdown(f"""
+                <h3> {request[1]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {request[2]} - {request[3]}</h3>
+                <h5> {request[4]} </h5>
+                <text> &nbsp;&nbsp;&nbsp;+ {request[5]}</text>
+                <br>
+                <br>
+            """, unsafe_allow_html=True)

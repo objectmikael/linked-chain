@@ -46,3 +46,4 @@ values = [
 for value in values:
     st.write(f"**{value.split(': ')[0]}**")
     st.write(value.split(': ')[1])
+    

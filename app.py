@@ -4,7 +4,6 @@
 #####################################
 
 # Imports Dependencies
-import os
 import json
 from pathlib import Path
 from web3 import Web3
@@ -15,10 +14,11 @@ from menu import menu
 # Variables.
 #####################################
 WEB3_PROVIDER_URI='http://127.0.0.1:7545'
-TOKEN_SMART_CONTRACT_ADDRESS='0x90670b91ceF6Fa24793E71ec438E52e993fda869'
-CROWDSALE_SMART_CONTRACT_ADDRESS='0xC9f677488E3f0dC1229b18CA336F20CbCD46d526'
-REQUESTS_SMART_CONTRACT_ADDRESS='0xCE9fE26be5F75C2acf88243002e9DE8FB8091B1A'
+TOKEN_SMART_CONTRACT_ADDRESS='0xa9ff0c76f0f1610E4B908a0Bff0482aC08c2A4e6'
+CROWDSALE_SMART_CONTRACT_ADDRESS='0xc335fd7319DB619F01BD43070C091caE27bF5dC6'
+REQUESTS_SMART_CONTRACT_ADDRESS='0xc0da2A9C1a4c42cb01E152C3A55fF281eA6dcE2F'
 DEPLOYER_SMART_CONTRACT_ADDRESS='0xc8Cde4E9a8a289afF86Aa92239de7D38743ca196'
+ETH_USD = 3560
 
 # Connects to Ganache.
 w3 = Web3(Web3.HTTPProvider(WEB3_PROVIDER_URI))
@@ -118,7 +118,7 @@ available_tokens_in_wei = tokenContract.functions.balanceOf(DEPLOYER_SMART_CONTR
 available_tokens = int(available_tokens_in_wei/ 10**18)
 weiRaised = crowdsaleContract.functions.weiRaised().call()
 value_in_ether = int(Web3.fromWei(weiRaised, 'ether'))
-eth_price_usd = 3817
+eth_price_usd = ETH_USD
 funds_raised_usd = value_in_ether*int(eth_price_usd)
 
 st.markdown(f"""

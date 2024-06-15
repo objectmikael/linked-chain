@@ -22,25 +22,36 @@ st.header("",divider='rainbow')
 
 st.header("Pending Validation Requests")
 if "pending_validations" in st.session_state:
+    company_requests = {}
     for request in st.session_state.pending_validations:
-        request_id = request["request_id"]
-        user_address = request["user_address"]
-        start_date = request["start_date"]
-        end_date = request["end_date"]
-        title = request["title"]
-        responsibility = request["responsibility"]
         company_name = request["company_name"]
-        company_address = request["approver_address"]
-        
-        st.write(f"Request ID: {request_id}")
-        
-        if st.button("Review Record"):
-            st.write(f"User Address: {user_address}")
-            st.write(f"Request ID: {request_id}")
-            st.write(f"Company Name: {company_name}")
-            st.write(f"Start Date: {start_date} End Date: {end_date}")
-            st.write(f"Title: {title}")
-            st.write(f"Responsibility: {responsibility}")
+        if company_name not in company_requests:
+            company_requests[company_name] = []
+        company_requests[company_name].append(request)
+    
+    for company_name, requests in company_requests.items():
+        if requests:
+            st.subheader(f"{company_name}")
+            for request in requests:
+                request_id = request["request_id"]
+                user_address = request["user_address"]
+                start_date = request["start_date"]
+                end_date = request["end_date"]
+                title = request["title"]
+                responsibility = request["responsibility"]
+                company_name = request["company_name"]
+                company_address = request["approver_address"]
+                
+                st.write(f"**New Request:**")
+                
+                if st.button(f"Review Record - {request_id}"):
+                    st.markdown(f"""
+                        Request ID: {request_id}  &nbsp;&nbsp;&nbsp; User Address: {user_address} \n
+                        **{company_name}** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**{start_date}** - **{end_date}** \n
+                        **{title}** \n
+                         &nbsp;&nbsp;&nbsp;- {responsibility}
 
-        if st.button(f":green[Validate Record]"):
-            approve_request(company_address, request_id)  
+                    """, unsafe_allow_html=True)
+
+                if st.button(f":green[Validate Record - {request_id}]"):
+                    approve_request(company_address, request_id)  
