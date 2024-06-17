@@ -40,8 +40,13 @@ To run the LinkedCHAIN application, follow these steps:
 1. Clone the repository to your local machine.
 2. Ensure you have Python and required dependencies installed.
 3. Navigate to the project directory in your terminal.
-4. Run the `app.py` script: `streamlit run app.py`.
-5. Access the application in your web browser at the provided URL.
+4. Open Ganache and run an instance with 10 accounts. 
+5. Add all 10 accounts to metamask.
+6. Open Remix and connect to the Injected-Metamask environment. 
+7. Use Remix to compile and deploy contracts in the following order: deployer, token, crowdsale, requests.
+8. Copy each contract address and replace the appropriate variables in `app.py`.
+9. Run the `app.py` script: `streamlit run app.py`.
+10. Access the application in your web browser at the provided URL.
 
 
 ### Crowdsale Information 

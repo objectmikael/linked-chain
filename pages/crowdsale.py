@@ -11,6 +11,7 @@ from functions import purchase_tokens
 # Shows the navigation menu for unauthenticated users.
 unauthenticated_menu()
 
+# Sets the page title and header with a rainbow divider.
 st.title("LinkedCHAIN")
 st.header("",divider='rainbow')
 
@@ -18,7 +19,7 @@ st.header("",divider='rainbow')
 st.subheader("What is Hyrd (HYD) Token?")
 st.write("Hyrd (HYD) is an ERC20 token used within the LinkedCHAIN ecosystem. It facilitates the validation and endorsement of job histories by allowing companies to participate in the validation process.")
 
-# How the Crowdsale Works
+# How the Crowdsale Works.
 st.subheader("How Does the Crowdsale Work?")
 st.write("""
 The crowdsale allows companies to purchase Hyrd (HYD) tokens, which they can then use to validate and endorse job histories. Here’s how it works:
@@ -32,7 +33,7 @@ The crowdsale allows companies to purchase Hyrd (HYD) tokens, which they can the
 This system ensures a secure, efficient, and transparent process for validating professional histories.
 """)
 
-# Summary of Crowdsale Benefits
+# Summary of Crowdsale Benefits.
 st.subheader("Benefits of Participating in the Crowdsale")
 benefits = [
     "Secure and Transparent Job History Validation",
@@ -44,16 +45,20 @@ st.write("Participating in the LinkedCHAIN crowdsale provides several benefits:"
 for benefit in benefits:
     st.write(f"- {benefit}")
 
-# Final Note
+# Final Note.
 st.write("Join the LinkedCHAIN ecosystem today and help us revolutionize the job application and verification process!")
 
+# Divider.
 st.divider()
+
+# Form for purchasing tokens.
 purchaser_name = st.selectbox("Select Purchaser Address:", options=display_names)
 purchaser_address = options_mapping[purchaser_name]
 purchase_amount = st.number_input("Enter the amount of tokens to purchase (1token = 0.5ETH):", min_value=100)
 beneficiary_name = st.text_input("Beneficiary:", "LinkedCHAIN")
 beneficiary_address = options_mapping[beneficiary_name]
 
+# Purchase Tokens button.
 if st.button(":green[Purchase Tokens]"):
     purchase_tokens(purchaser_address, beneficiary_address, purchase_amount)
     
